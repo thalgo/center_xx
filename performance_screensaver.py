@@ -1,7 +1,7 @@
 import json
 
 
-def create_switching_website(json_file, gif_url):
+def create_champion_website(json_file, gif_url):
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
@@ -15,13 +15,23 @@ def create_switching_website(json_file, gif_url):
         "Juli", "August", "September", "Oktober", "November", "Dezember"
     ]
 
+    # --- CHAMPION LOGIK ---
+    max_sun_netto = -1
+    champion_name = ""
+
+    for m in members:
+        s_netto = sum(m.get("netto_monate", []))
+        if s_netto > max_sun_netto:
+            max_sun_netto = s_netto
+            champion_name = m.get("name", "")
+
     html_content = f"""
     <!DOCTYPE html>
     <html lang="de">
     <head>
         <meta charset="UTF-8">
         <script src="https://cdn.tailwindcss.com"></script>
-        <title>Dynamic Performance Matrix</title>
+        <title>Team Cashboard Center</title>
         <style>
             body {{
                 background-image: url('{gif_url}');
@@ -29,41 +39,66 @@ def create_switching_website(json_file, gif_url):
                 background-position: center;
                 background-attachment: fixed;
                 margin: 0;
-                overflow-x: hidden;
+                overflow: hidden;
             }}
-            .bg-overlay {{ background-color: rgba(0, 0, 0, 0.75); min-height: 100vh; width: 100vw; }}
-            .compact-cell {{ width: calc(100vw / 26.5); min-width: 0; }}
+            .bg-overlay {{ 
+                background-color: rgba(0, 0, 0, 0.75); 
+                height: 100vh; 
+                width: 100vw; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center; 
+                align-items: center;     
+            }}
+
+            .compact-cell {{ width: calc(100vw / 27); min-width: 0; }}
 
             .mode-netto .val-brutto {{ display: none; }}
             .mode-brutto .val-netto {{ display: none; }}
 
-            .active-label {{
-                transition: all 0.3s ease;
+            .val-netto, .val-brutto {{
+                animation: fadeIn 0.5s ease-in-out;
+            }}
+
+            @keyframes fadeIn {{
+                from {{ opacity: 0; transform: scale(0.9); }}
+                to {{ opacity: 1; transform: scale(1); }}
+            }}
+
+            /* Kronen-Styling - Position angepasst */
+            .crown {{
+                position: absolute;
+                top: 0px; 
+                left: 40%;
+                transform: translateX(-50%) rotate(-15deg);
+                font-size: 18px;
+                color: #f59e0b;
+                text-shadow: 0 0 12px rgba(245, 158, 11, 0.9), 0 0 3px rgba(0,0,0,1);
+                z-index: 50;
+                pointer-events: none;
             }}
         </style>
     </head>
-    <body class="text-white font-sans text-[10px] mode-netto" id="main-body">
-        <div class="bg-overlay py-4 px-2">
-            <header class="flex justify-between items-center max-w-[98vw] mx-auto mb-4">
-                <h1 class="text-lg font-black uppercase tracking-[0.3em] text-emerald-400">Team Dashboard 2026</h1>
+    <body class="text-white font-sans mode-netto" id="main-body">
+        <div class="bg-overlay p-4">
 
-                <div class="flex gap-4 items-center bg-black/40 px-4 py-2 rounded-full border border-white/10">
-                    <span id="label-netto" class="uppercase font-bold tracking-widest text-emerald-400 opacity-100 transition-opacity">Netto-Ansicht</span>
-                    <span class="text-gray-600">|</span>
-                    <span id="label-brutto" class="uppercase font-bold tracking-widest text-amber-500 opacity-30 transition-opacity">Brutto-Ansicht</span>
-                </div>
+            <header class="mb-6">
+                <h1 class="text-5xl font-black uppercase tracking-[0.5em] text-emerald-400 drop-shadow-[0_0_20px_rgba(52,211,153,0.6)] text-center">
+                    Cashboard Center XX / VI
+                </h1>
             </header>
 
-            <div class="w-full bg-black/40 backdrop-blur-3xl rounded-xl border border-white/10 shadow-2xl overflow-hidden">
+            <div class="w-[98vw] bg-black/40 backdrop-blur-3xl rounded-xl border border-white/10 shadow-2xl overflow-hidden mb-8">
                 <table class="w-full table-fixed border-collapse">
                     <thead>
                         <tr class="bg-white/10">
-                            <th class="w-16 p-2 border-r border-white/10 uppercase font-bold text-gray-500">Monat</th>
+                            <th class="w-20 pt-5 pb-2 border-r border-white/10 uppercase font-bold text-gray-500 text-[10px]">Monat</th>
                             {" ".join([f'''
-                            <th class="p-1 border-r border-white/10 text-center compact-cell">
+                            <th class="pt-5 pb-1 border-r border-white/10 text-center compact-cell relative">
+                                {'<div class="crown">👑</div>' if m['name'] == champion_name else ''}
                                 <img src="https://ui-avatars.com/api/?name={m['name'].replace(" ", "+")}&background=random&color=fff&size=40" 
-                                     class="w-6 h-6 rounded-full mx-auto mb-1 border border-white/20">
-                                <div class="text-[7px] font-bold uppercase truncate overflow-hidden whitespace-nowrap px-1">{m['name'].split()[0]}</div>
+                                     class="w-7 h-7 rounded-full mx-auto mb-1 border border-white/20 shadow-sm relative z-0">
+                                <div class="text-[8px] font-bold uppercase truncate px-1 text-gray-300">{m['name'].split()[0]}</div>
                             </th>''' for m in members])}
                         </tr>
                     </thead>
@@ -73,7 +108,7 @@ def create_switching_website(json_file, gif_url):
     for idx, monat in enumerate(monate_namen):
         html_content += f"""
                         <tr class="border-b border-white/5 hover:bg-white/5 transition-all">
-                            <td class="p-2 font-bold border-r border-white/10 bg-black/20 text-center text-gray-400">
+                            <td class="p-1 font-bold border-r border-white/10 bg-black/20 text-center text-gray-400 text-[11px]">
                                 {monat[:3]}
                             </td>
         """
@@ -82,26 +117,30 @@ def create_switching_website(json_file, gif_url):
             b_val = m.get("brutto_monate", [])[idx] if idx < len(m.get("brutto_monate", [])) else 0
 
             html_content += f"""
-                            <td class="p-2 border-r border-white/10 text-center compact-cell font-bold text-[11px]">
-                                <span class="val-netto text-emerald-300">{n_val}</span>
-                                <span class="val-brutto text-amber-400">{b_val}</span>
+                            <td class="p-1.5 border-r border-white/10 text-center compact-cell font-black text-[14px]">
+                                <span class="val-netto text-emerald-300 drop-shadow-sm">{n_val}</span>
+                                <span class="val-brutto text-amber-400 drop-shadow-sm">{b_val}</span>
                             </td>
             """
         html_content += "</tr>"
 
     html_content += """
                         <tr class="bg-white/5 border-t-2 border-white/20">
-                            <td class="p-2 font-black border-r border-white/10 text-center text-white uppercase tracking-tighter">
+                            <td class="p-2 font-black border-r border-white/10 text-center text-white uppercase tracking-tighter text-[12px]">
                                 TOTAL
                             </td>
     """
     for m in members:
         s_netto = sum(m.get("netto_monate", []))
         s_brutto = sum(m.get("brutto_monate", []))
+        is_champ = m['name'] == champion_name
+        total_class_n = "text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]" if is_champ else "text-emerald-400"
+        total_class_b = "text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]" if is_champ else "text-amber-500"
+
         html_content += f"""
-                            <td class="p-2 border-r border-white/10 text-center compact-cell font-black text-[11px]">
-                                <span class="val-netto text-emerald-400">{s_netto}</span>
-                                <span class="val-brutto text-amber-500">{s_brutto}</span>
+                            <td class="p-1.5 border-r border-white/10 text-center compact-cell font-black text-[15px]">
+                                <span class="val-netto {total_class_n}">{s_netto}</span>
+                                <span class="val-brutto {total_class_b}">{s_brutto}</span>
                             </td>
         """
 
@@ -111,12 +150,10 @@ def create_switching_website(json_file, gif_url):
                 </table>
             </div>
 
-            <div class="mt-8 flex flex-col items-center">
-                <div class="bg-black/50 backdrop-blur-md p-4 rounded-2xl border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.2)] text-center">
-                    <h2 class="text-yellow-500 font-black uppercase tracking-[0.5em] mb-3 text-xs italic">Employee of the Month</h2>
-                    <img src="employee_of_the_month.png" alt="Employee of the Month" 
-                         class="w-48 h-auto rounded-lg border-2 border-yellow-500/50 shadow-lg mx-auto overflow-hidden">
-                </div>
+            <div class="flex gap-6 items-center bg-black/60 px-10 py-3 rounded-full border border-white/10 backdrop-blur-md shadow-lg">
+                <span id="label-netto" class="uppercase font-black tracking-[0.2em] text-emerald-400 transition-all duration-500 text-sm">Netto</span>
+                <span class="text-gray-600 font-thin text-xl">|</span>
+                <span id="label-brutto" class="uppercase font-black tracking-[0.2em] text-amber-500 opacity-20 transition-all duration-500 text-sm">Brutto</span>
             </div>
 
         </div>
@@ -130,13 +167,13 @@ def create_switching_website(json_file, gif_url):
                 if (body.classList.contains('mode-netto')) {
                     body.classList.remove('mode-netto');
                     body.classList.add('mode-brutto');
-                    lNetto.style.opacity = "0.3";
+                    lNetto.style.opacity = "0.2";
                     lBrutto.style.opacity = "1";
                 } else {
                     body.classList.remove('mode-brutto');
                     body.classList.add('mode-netto');
                     lNetto.style.opacity = "1";
-                    lBrutto.style.opacity = "0.3";
+                    lBrutto.style.opacity = "0.2";
                 }
             }, 10000);
         </script>
@@ -146,8 +183,8 @@ def create_switching_website(json_file, gif_url):
 
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("Website mit 'Employee of the Month' Bild wurde erstellt!")
+    print(f"Update fertig! Champion: {champion_name} hat nun genug Platz für die Krone.")
 
 
 GIF_URL = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG44eXVpMHh1c2xvbnA4bGUydHA5MWZydXE0djIzYTkwaG8wc281MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JpG2A9P3dPHXaTYrwu/giphy.gif"
-create_switching_website("data.json", GIF_URL)
+create_champion_website("data.json", GIF_URL)
