@@ -1,6 +1,5 @@
 import json
 
-
 def create_champion_website(json_file, local_gif_name):
     try:
         with open(json_file, 'r', encoding='utf-8') as f:
@@ -34,7 +33,7 @@ def create_champion_website(json_file, local_gif_name):
                 if val is not None and isinstance(val, (int, float)):
                     if val > max_last_month_brutto:
                         max_last_month_brutto = val
-                        champion_name = m.get("name", "")
+                        champion_name = m.get("anzeigename", "")
 
     html_content = f"""
     <!DOCTYPE html>
@@ -50,158 +49,36 @@ def create_champion_website(json_file, local_gif_name):
                 background-size: cover;
                 background-position: center;
                 background-attachment: fixed;
-                margin: 0;
-                padding: 0;
-                overflow: hidden;
+                margin: 0; padding: 0; overflow: hidden;
                 font-family: 'Cantata One', serif;
-                height: 100vh;
-                width: 100vw;
-                color: white;
+                height: 100vh; width: 100vw; color: white;
             }}
-
-            .bg-overlay {{ 
-                background-color: rgba(0, 0, 0, 0.75); 
-                height: 100vh; 
-                width: 100vw; 
-                display: flex; 
-                flex-direction: column;
-                padding: 0.5vh 0.5vw;
-                box-sizing: border-box;
-            }}
-
-            header {{
-                text-align: center;
-                height: 7vh; /* Etwas mehr Höhe für den größeren Titel */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }}
-
-            header h1 {{
-                font-size: 3.5vh; /* DEUTLICH GRÖSSER */
-                letter-spacing: 0.5em;
-                margin: 0;
-                font-weight: 900;
-                text-transform: uppercase;
-                background: linear-gradient(to bottom, #fff 40%, #ccc 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                drop-shadow: 0 0 20px rgba(0,0,0,0.5);
-            }}
-
-            .table-container {{
-                flex-grow: 1;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.02);
-                border: 1px solid rgba(255,255,255,0.1);
-                overflow: hidden;
-                margin-bottom: 0.5vh;
-            }}
-
-            table {{
-                width: 100%;
-                height: 100%;
-                table-layout: fixed;
-                border-collapse: collapse;
-            }}
-
-            th, td {{
-                border: 1px solid rgba(255,255,255,0.07);
-                text-align: center;
-                vertical-align: middle;
-                padding: 0 !important;
-            }}
-
-            .col-month {{
-                width: 5.5vw;
-                font-size: 1vh;
-                text-transform: uppercase;
-                background: rgba(0,0,0,0.5);
-                color: #aaa;
-                font-weight: bold;
-            }}
-
-            th div.name-label {{
-                font-size: 0.62vw;
-                font-weight: bold;
-                text-transform: uppercase;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }}
-
-            .value-container {{
-                position: relative;
-                height: 100%;
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 0.75vw;
-            }}
-
-            .val-netto, .val-brutto {{
-                position: absolute;
-                width: 100%;
-                transition: opacity 1s ease-in-out;
-                font-weight: 900;
-            }}
-
-            .mode-netto .val-netto {{ opacity: 1; }}
-            .mode-netto .val-brutto {{ opacity: 0; pointer-events: none; }}
-            .mode-brutto .val-netto {{ opacity: 0; pointer-events: none; }}
-            .mode-brutto .val-brutto {{ opacity: 1; }}
-
-            .text-netto {{ color: #a6edd2; }} 
-            .text-brutto {{ color: #ffc5ab; }}
-
-            .champ-glow {{
-                text-shadow: 0 0 10px rgba(255, 197, 171, 0.9);
-                color: #fff !important;
-                font-size: 0.88vw;
-            }}
-
-            .crown-icon {{
-                font-size: 0.75vw;
-                display: block;
-                color: #fbbf24;
-            }}
-
-            .total-row {{
-                background: rgba(255,255,255,0.12);
-                height: 5.5vh;
-            }}
-
-            .total-row td {{
-                font-size: 0.85vw;
-                font-weight: 900;
-                border-top: 2px solid rgba(255,255,255,0.2);
-            }}
-
-            footer {{
-                height: 4vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }}
-
-            .legend {{
-                background: rgba(0,0,0,0.6);
-                padding: 0.2vh 2vw;
-                border-radius: 20px;
-                border: 1px solid rgba(255,255,255,0.1);
-                font-size: 1.2vh;
-                display: flex;
-                gap: 15px;
-            }}
+            .bg-overlay {{ background-color: rgba(0, 0, 0, 0.75); height: 100vh; width: 100vw; display: flex; flex-direction: column; padding: 0.5vh 0.5vw; box-sizing: border-box; }}
+            header {{ text-align: center; height: 7vh; display: flex; align-items: center; justify-content: center; }}
+            header h1 {{ font-size: 3.5vh; letter-spacing: 0.5em; margin: 0; font-weight: 900; text-transform: uppercase; background: linear-gradient(to bottom, #fff 40%, #ccc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }}
+            .table-container {{ flex-grow: 1; width: 100%; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 0.5vh; }}
+            table {{ width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse; }}
+            th, td {{ border: 1px solid rgba(255,255,255,0.07); text-align: center; vertical-align: middle; padding: 0 !important; }}
+            .col-month {{ width: 5.5vw; font-size: 1vh; text-transform: uppercase; background: rgba(0,0,0,0.5); color: #aaa; font-weight: bold; }}
+            th div.name-label {{ font-size: 0.62vw; font-weight: bold; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
+            .value-container {{ position: relative; height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 0.75vw; }}
+            .val-netto, .val-brutto {{ position: absolute; width: 100%; transition: opacity 1s ease-in-out; font-weight: 900; }}
+            .mode-netto .val-netto {{ opacity: 1; }} .mode-netto .val-brutto {{ opacity: 0; pointer-events: none; }}
+            .mode-brutto .val-netto {{ opacity: 0; pointer-events: none; }} .mode-brutto .val-brutto {{ opacity: 1; }}
+            .text-netto {{ color: #a6edd2; }} .text-brutto {{ color: #ffc5ab; }}
+            .champ-glow {{ text-shadow: 0 0 10px rgba(255, 197, 171, 0.9); color: #fff !important; font-size: 0.88vw; }}
+            .crown-icon {{ font-size: 0.75vw; display: block; color: #fbbf24; }}
+            .total-row {{ background: rgba(255,255,255,0.12); height: 5.5vh; }}
+            .total-row td {{ font-size: 0.85vw; font-weight: 900; border-top: 2px solid rgba(255,255,255,0.2); }}
+            footer {{ height: 4vh; display: flex; justify-content: center; align-items: center; }}
+            .legend {{ background: rgba(0,0,0,0.6); padding: 0.2vh 2vw; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); font-size: 1.2vh; display: flex; gap: 15px; }}
         </style>
     </head>
     <body class="mode-netto" id="main-body">
         <div class="bg-overlay">
             <header>
-                <h1 class="font-black">Cashboard Center XX/VI</h1>
+                <h1 class="font-black">Team Cashboard Center XX/VI</h1>
             </header>
-
             <div class="table-container">
                 <table class="font-numbers">
                     <thead>
@@ -209,8 +86,8 @@ def create_champion_website(json_file, local_gif_name):
                             <th class="col-month">Monat</th>
                             {" ".join([f'''
                             <th class="relative {'bg-white/10' if i == len(members) - 1 else ''}">
-                                {'<span class="crown-icon">👑</span>' if m['name'] == champion_name else ''}
-                                <div class="name-label">{m.get('anzeigename', m['name'])}</div>
+                                {'<span class="crown-icon">👑</span>' if m.get('anzeigename') == champion_name else ''}
+                                <div class="name-label">{m.get('anzeigename', 'N/A')}</div>
                             </th>''' for i, m in enumerate(members)])}
                         </tr>
                     </thead>
@@ -232,7 +109,8 @@ def create_champion_website(json_file, local_gif_name):
             n_display = str(n_raw) if n_raw is not None else ""
             b_display = str(b_raw) if b_raw is not None else ""
 
-            is_champ_cell = (m['name'] == champion_name and idx == last_data_index)
+            # Check auf den Anzeigenamen statt den ursprünglichen "name"
+            is_champ_cell = (m.get('anzeigename') == champion_name and idx == last_data_index)
             b_class = "champ-glow" if is_champ_cell else ""
             special_col = "bg-white/5" if i == len(members) - 1 else ""
 
@@ -269,7 +147,6 @@ def create_champion_website(json_file, local_gif_name):
                     </tbody>
                 </table>
             </div>
-
             <footer>
                 <div class="legend">
                     <span id="label-brutto" style="color: #ffc5ab; font-weight: bold;">BAEH</span>
@@ -278,12 +155,10 @@ def create_champion_website(json_file, local_gif_name):
                 </div>
             </footer>
         </div>
-
         <script>
             const body = document.getElementById('main-body');
             const lNetto = document.getElementById('label-netto');
             const lBrutto = document.getElementById('label-brutto');
-
             setInterval(() => {
                 if (body.classList.contains('mode-netto')) {
                     body.classList.remove('mode-netto');
@@ -302,10 +177,9 @@ def create_champion_website(json_file, local_gif_name):
     </html>
     """
 
-    with open("index.html", "w", encoding="utf-8") as f:
+    with open("../index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
-    print("Dashboard mit vergrößertem Titel erstellt.")
+    print("HTML erstellt.")
 
-
-LOCAL_GIF = "background.gif"
-create_champion_website("data.json", LOCAL_GIF)
+LOCAL_GIF = "assets/background.gif"
+create_champion_website("../assets/data.json", LOCAL_GIF)
