@@ -1,0 +1,2501 @@
+
+    <!DOCTYPE html>
+    <html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Cantata+One&display=swap" rel="stylesheet">
+        <title>Cashboard Center XX/VI</title>
+        <style>
+            body {
+                background-image: url('assets/background.gif');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+                margin: 0; padding: 0; overflow: hidden;
+                font-family: 'Cantata One', serif;
+                height: 100vh; width: 100vw; color: white;
+            }
+            .bg-overlay { background-color: rgba(0, 0, 0, 0.75); height: 100vh; width: 100vw; display: flex; flex-direction: column; padding: 0.5vh 0.5vw; box-sizing: border-box; }
+            header { text-align: center; height: 7vh; display: flex; align-items: center; justify-content: center; }
+            header h1 { font-size: 3.5vh; letter-spacing: 0.5em; margin: 0; font-weight: 900; text-transform: uppercase; background: linear-gradient(to bottom, #fff 40%, #ccc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+            .table-container { flex-grow: 1; width: 100%; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.1); overflow: hidden; margin-bottom: 0.5vh; }
+            table { width: 100%; height: 100%; table-layout: fixed; border-collapse: collapse; }
+            th, td { border: 1px solid rgba(255,255,255,0.07); text-align: center; vertical-align: middle; padding: 0 !important; }
+            .col-month { width: 5.5vw; font-size: 1vh; text-transform: uppercase; background: rgba(0,0,0,0.5); color: #aaa; font-weight: bold; }
+            th div.name-label { font-size: 0.62vw; font-weight: bold; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .value-container { position: relative; height: 100%; width: 100%; display: flex; justify-content: center; align-items: center; font-size: 0.75vw; }
+            .val-netto, .val-brutto { position: absolute; width: 100%; transition: opacity 1s ease-in-out; font-weight: 900; }
+            .mode-netto .val-netto { opacity: 1; } .mode-netto .val-brutto { opacity: 0; pointer-events: none; }
+            .mode-brutto .val-netto { opacity: 0; pointer-events: none; } .mode-brutto .val-brutto { opacity: 1; }
+            .text-netto { color: #a6edd2; } .text-brutto { color: #ffc5ab; }
+            .champ-glow { text-shadow: 0 0 10px rgba(255, 197, 171, 0.9); color: #fff !important; font-size: 0.88vw; }
+            .crown-icon { font-size: 0.75vw; display: block; color: #fbbf24; }
+            .total-row { background: rgba(255,255,255,0.12); height: 5.5vh; }
+            .total-row td { font-size: 0.85vw; font-weight: 900; border-top: 2px solid rgba(255,255,255,0.2); }
+            footer { height: 4vh; display: flex; justify-content: center; align-items: center; }
+            .legend { background: rgba(0,0,0,0.6); padding: 0.2vh 2vw; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); font-size: 1.2vh; display: flex; gap: 15px; }
+        </style>
+    </head>
+    <body class="mode-netto" id="main-body">
+        <div class="bg-overlay">
+            <header>
+                <h1 class="font-black">Team Cashboard Center XX/VI</h1>
+            </header>
+            <div class="table-container">
+                <table class="font-numbers">
+                    <thead>
+                        <tr style="height: 4.5vh;">
+                            <th class="col-month">Monat</th>
+                            
+                            <th class="relative ">
+                                
+                                <div class="name-label">Emre</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Sven</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Robin</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Stosik</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Michelle</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Sousa</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Paul M.</div>
+                            </th> 
+                            <th class="relative ">
+                                <span class="crown-icon">👑</span>
+                                <div class="name-label">Milad</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Deno</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Siewerth</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Enes</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Nikolaj</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Zarif</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Tolga</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Anastasia</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">David</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Gauri</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Onika</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Canan</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Marzieh</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Joan</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Leandro</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Paul S.</div>
+                            </th> 
+                            <th class="relative ">
+                                
+                                <div class="name-label">Sofiane</div>
+                            </th> 
+                            <th class="relative bg-white/10">
+                                
+                                <div class="name-label">TEAM</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Januar</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">768</span>
+                                    <span class="val-brutto text-brutto ">352</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1612</span>
+                                    <span class="val-brutto text-brutto ">5</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">171</span>
+                                    <span class="val-brutto text-brutto ">165</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">383</span>
+                                    <span class="val-brutto text-brutto ">147</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">547</span>
+                                    <span class="val-brutto text-brutto ">665</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">606</span>
+                                    <span class="val-brutto text-brutto ">687</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">365</span>
+                                    <span class="val-brutto text-brutto ">113</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">2784</span>
+                                    <span class="val-brutto text-brutto ">1175</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">79</span>
+                                    <span class="val-brutto text-brutto ">65</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">76</span>
+                                    <span class="val-brutto text-brutto ">65</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">168</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">1</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">558</span>
+                                    <span class="val-brutto text-brutto ">4</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">3</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">62</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">7527</span>
+                                    <span class="val-brutto text-brutto ">4012</span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Februar</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">350</span>
+                                    <span class="val-brutto text-brutto ">269</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">-46</span>
+                                    <span class="val-brutto text-brutto ">679</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">633</span>
+                                    <span class="val-brutto text-brutto ">767</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">49</span>
+                                    <span class="val-brutto text-brutto ">81</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">314</span>
+                                    <span class="val-brutto text-brutto ">29</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">712</span>
+                                    <span class="val-brutto text-brutto ">416</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">229</span>
+                                    <span class="val-brutto text-brutto ">136</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1990</span>
+                                    <span class="val-brutto text-brutto ">2351</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">-543</span>
+                                    <span class="val-brutto text-brutto ">323</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">66</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">292</span>
+                                    <span class="val-brutto text-brutto ">124</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">18</span>
+                                    <span class="val-brutto text-brutto ">134</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">148</span>
+                                    <span class="val-brutto text-brutto ">147</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">124</span>
+                                    <span class="val-brutto text-brutto ">129</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">309</span>
+                                    <span class="val-brutto text-brutto ">218</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">4687</span>
+                                    <span class="val-brutto text-brutto ">6093</span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">März</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">816</span>
+                                    <span class="val-brutto text-brutto ">1004</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">448</span>
+                                    <span class="val-brutto text-brutto ">1703</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">-157</span>
+                                    <span class="val-brutto text-brutto ">452</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">77</span>
+                                    <span class="val-brutto text-brutto ">666</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">349</span>
+                                    <span class="val-brutto text-brutto ">429</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">-96</span>
+                                    <span class="val-brutto text-brutto ">506</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">116</span>
+                                    <span class="val-brutto text-brutto ">537</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">746</span>
+                                    <span class="val-brutto text-brutto ">391</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">224</span>
+                                    <span class="val-brutto text-brutto ">676</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">98</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">153</span>
+                                    <span class="val-brutto text-brutto ">279</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">120</span>
+                                    <span class="val-brutto text-brutto ">338</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">10</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">240</span>
+                                    <span class="val-brutto text-brutto ">373</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">71</span>
+                                    <span class="val-brutto text-brutto ">117</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">32</span>
+                                    <span class="val-brutto text-brutto ">58</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">398</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">3435</span>
+                                    <span class="val-brutto text-brutto ">8294</span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">April</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">128</span>
+                                    <span class="val-brutto text-brutto ">592</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1396</span>
+                                    <span class="val-brutto text-brutto ">717</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1008</span>
+                                    <span class="val-brutto text-brutto ">458</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">499</span>
+                                    <span class="val-brutto text-brutto ">294</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">257</span>
+                                    <span class="val-brutto text-brutto ">617</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">325</span>
+                                    <span class="val-brutto text-brutto ">89</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">602</span>
+                                    <span class="val-brutto text-brutto ">145</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">59</span>
+                                    <span class="val-brutto text-brutto champ-glow">1671</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">718</span>
+                                    <span class="val-brutto text-brutto ">392</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">56</span>
+                                    <span class="val-brutto text-brutto ">60</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">90</span>
+                                    <span class="val-brutto text-brutto ">84</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">126</span>
+                                    <span class="val-brutto text-brutto ">227</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">17</span>
+                                    <span class="val-brutto text-brutto ">60</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">223</span>
+                                    <span class="val-brutto text-brutto ">224</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">14</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">96</span>
+                                    <span class="val-brutto text-brutto ">66</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">-1</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto ">0</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">549</span>
+                                    <span class="val-brutto text-brutto ">203</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1</span>
+                                    <span class="val-brutto text-brutto ">8</span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">6220</span>
+                                    <span class="val-brutto text-brutto ">5975</span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Mai</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Juni</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Juli</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">August</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">September</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Oktober</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">November</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr style="height: 6.4vh;">
+                            <td class="col-month">Dezember</td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            
+                            <td class="bg-white/5">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto"></span>
+                                    <span class="val-brutto text-brutto "></span>
+                                </div>
+                            </td>
+            </tr>
+                        <tr class="total-row">
+                            <td class="col-month font-black">TOTAL</td>
+    
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">2062</span>
+                                    <span class="val-brutto text-brutto">2217</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">3410</span>
+                                    <span class="val-brutto text-brutto">3104</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1655</span>
+                                    <span class="val-brutto text-brutto">1842</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1008</span>
+                                    <span class="val-brutto text-brutto">1188</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1467</span>
+                                    <span class="val-brutto text-brutto">1740</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1547</span>
+                                    <span class="val-brutto text-brutto">1698</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1312</span>
+                                    <span class="val-brutto text-brutto">931</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">5579</span>
+                                    <span class="val-brutto text-brutto">5588</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">478</span>
+                                    <span class="val-brutto text-brutto">1456</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">56</span>
+                                    <span class="val-brutto text-brutto">158</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">385</span>
+                                    <span class="val-brutto text-brutto">428</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">538</span>
+                                    <span class="val-brutto text-brutto">857</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">17</span>
+                                    <span class="val-brutto text-brutto">71</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">481</span>
+                                    <span class="val-brutto text-brutto">731</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">86</span>
+                                    <span class="val-brutto text-brutto">117</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">834</span>
+                                    <span class="val-brutto text-brutto">275</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">123</span>
+                                    <span class="val-brutto text-brutto">132</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">309</span>
+                                    <span class="val-brutto text-brutto">280</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">549</span>
+                                    <span class="val-brutto text-brutto">601</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">1</span>
+                                    <span class="val-brutto text-brutto">8</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto">0</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto">0</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto">0</span>
+                                </div>
+                            </td>
+        
+                            <td class="">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">0</span>
+                                    <span class="val-brutto text-brutto">0</span>
+                                </div>
+                            </td>
+        
+                            <td class="bg-white/20">
+                                <div class="value-container">
+                                    <span class="val-netto text-netto">21869</span>
+                                    <span class="val-brutto text-brutto">24374</span>
+                                </div>
+                            </td>
+        
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer>
+                <div class="legend">
+                    <span id="label-brutto" style="color: #ffc5ab; font-weight: bold;">BAEH</span>
+                    <span style="opacity: 0.3;">|</span>
+                    <span id="label-netto" style="color: #a6edd2; font-weight: bold;">NVEH</span>
+                </div>
+            </footer>
+        </div>
+        <script>
+            const body = document.getElementById('main-body');
+            const lNetto = document.getElementById('label-netto');
+            const lBrutto = document.getElementById('label-brutto');
+            setInterval(() => {
+                if (body.classList.contains('mode-netto')) {
+                    body.classList.remove('mode-netto');
+                    body.classList.add('mode-brutto');
+                    lBrutto.style.opacity = "1";
+                    lNetto.style.opacity = "0.3";
+                } else {
+                    body.classList.remove('mode-brutto');
+                    body.classList.add('mode-netto');
+                    lBrutto.style.opacity = "0.3";
+                    lNetto.style.opacity = "1";
+                }
+            }, 10000);
+        </script>
+    </body>
+    </html>
+    
